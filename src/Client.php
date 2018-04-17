@@ -14,7 +14,7 @@ class Client
     /** Namespace  */
     protected $namespace;
 
-    /** @var \Predis\Client */
+    /** @var \RedisSource */
     public $redis;
 
     /** @var Serializer */
@@ -26,12 +26,12 @@ class Client
     /**
      * Sidekiq job pusher init
      *
-     * @param \Predis\Client $redis
+     * @param \RedisSource $redis
      * @param string         $namespace
      * @param Serializer     $serializer
      * @param IdGenerator    $idGenerator
      */
-    public function __construct(\Predis\Client $redis, $namespace = null, $serializer = null, $idGenerator = null)
+    public function __construct(\RedisSource $redis, $namespace = null, $serializer = null, $idGenerator = null)
     {
         $this->redis = $redis;
         $this->namespace = ($namespace === null) ? '' : (string) $namespace;
@@ -155,7 +155,7 @@ class Client
     }
 
     /**
-     * @return \Predis\Client
+     * @return \RedisSource
      */
     public function getRedis()
     {
